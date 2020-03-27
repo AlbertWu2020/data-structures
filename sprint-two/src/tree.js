@@ -2,8 +2,8 @@ var Tree = function(value) {
   var newTree = {};
   newTree.value = value;
 
-  // your code here
-  newTree.children = [];  // fix me
+
+  newTree.children = [];  // children should be an array
   // merge newTree and treeMethods object into newTree object
   _.extend(newTree, treeMethods);
 
@@ -30,8 +30,6 @@ treeMethods.contains = function(target) {
     // iterate over children
     for(var i=0; i < this.children.length; i++){
        // check if the value equal target
-       console.log('thissss====', this);
-       console.log('childrennnnn',this.children[i])
        if(this.children[i].contains(target)){
 
          // true
@@ -51,5 +49,5 @@ treeMethods.contains = function(target) {
 
 
 /*
- * Complexity: What is the time complexity of the above functions?
+ * Complexity: What is the time complexity of the above functions? O(N)
  */

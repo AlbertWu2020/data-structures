@@ -63,5 +63,5 @@ var Node = function(value) {
 };
 
 /*
- * Complexity: What is the time complexity of the above functions? Linear
+ * Complexity: What is the time complexity of the above functions? O(1)
  */

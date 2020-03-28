@@ -1,65 +1,86 @@
 var BinarySearchTree = function(value) {
+  //var trees = {};
+  var trees = Object.create(treePrototype);
+  //console.log('this is treePrototype', treePrototype)
   // assign value to root
-  this.root = value;
+  trees.value = value;
   // assign null to left
-  this.left = null;
+  trees.left = null;
   // assign null to right
-  this.right = null;
-
-
-
-
+  trees.right = null;
+  return trees;
 
 };
 
-BinarySearchTree.prototype.insert = function(val){
+var treePrototype = {};
+
+treePrototype.insert = function(value){
+
   // check val if less than root value
-  if (val < this.root) {
+  if (value < this.value) {
     // if left is null
     if (this.left === null) {
       // assign val to left
-      this.left = val;
+      this.left = BinarySearchTree(value);
       // otherwise
     } else {
       // insert val to left
-      this.left.insert(val);
-      //console.log(this.left.insert(val));
+      this.left.insert(value);
     }// val greater than root value
   } else {
     // if right is null
     if (this.right === null) {
       // assign val to right
-      this.right = val;
+      this.right = BinarySearchTree(value);
       // otherwise
     } else {
       // insert val to right
-      this.right.insert(val);
+      this.right.insert(value);
     }
+    //console.log('this is trees', trees)
   }
 
 };
-BinarySearchTree.prototype.contains = function(targetVal){
+treePrototype.contains = function(value){
 //accepts a value and returns a boolean reflecting whether or not the value is contained in the tree
 // create a variable as currentVal
-var currentVal = this.root;
-// while has a currentVal
-// if targetVal equal currentVal
- // return true
- // if targetVal < currentVal
-  // currentVal assign to left
- // otherwise
-  // currentVal assign to right
+var currentVal = this.value;
 
-// return false
+// if value equal currentVal
+if( value === currentVal){
+   // return true
+  return true;
+}
+else if(value < currentVal){
+// if value < currentVal
+currentVal = !!(this.left && this.left.contains(value));
+
+}else{
+// otherwise
+currentVal = !!(this.right && this.right.contains(value));
+}
+
+return currentVal;
 };
-BinarySearchTree.prototype.depthFirstLog = function(cb){
+treePrototype.depthFirstLog = function(cb){
 // accepts a callback and executes it on every value contained in the tree
 // if root value is not null
-  // access callback excute the root value
+if(this.value !== null){
+// access callback excute the root value
+    cb(this.value);
+}
   // if on the left
-   // return this.left.depthFirstLog(cb)
-  // if on the right
-  // return this.right.depthFirstLog(cb)
+  if(this.left){
+      this.left.depthFirstLog(cb)
+
+  }
+  if(this.right){
+    // if on the right
+    this.right.depthFirstLog(cb)
+  }
+
+
+
 
 };
 

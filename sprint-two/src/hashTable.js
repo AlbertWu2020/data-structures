@@ -57,8 +57,8 @@ HashTable.prototype.retrieve = function(k) {
 
 HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  // delete the value at hashing key
-  //delete this._storage[k];
+  // delete the tuple in array
+
   var getIndex = this._storage.get(index);
   for(var i = 0; i < getIndex.length; i++){
 
@@ -70,8 +70,6 @@ HashTable.prototype.remove = function(k) {
       //console.log('this is getIndex', getIndex);
     }
   }
-
-  return undefined;
 };
 
 
